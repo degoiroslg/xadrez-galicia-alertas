@@ -1,0 +1,42 @@
+name: Actualizar torneos
+
+on:
+  schedule:
+    # 08:15 e 20:15 UTC todos os días; GitHub pode atrasar tarefas programadas.
+    - cron: "15 8,20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-tournaments
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Consultar fontes e xerar JSON
+        run: python scripts/update_tournaments.py
+      - name: Gardar cambios
+        run: |
+          if [[ -n "$(git status --porcelain data/tournaments.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/tournaments.json
+            git commit -m "Actualizar calendario de torneos"
+            git push
+          else
+            echo "Non hai cambios no calendario."
+          fi
