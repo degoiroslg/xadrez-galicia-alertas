@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="gl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b32">
+  <meta name="description" content="Calendario e avisos de torneos de xadrez en Galicia.">
+  <title>Xadrez Galicia — torneos e avisos</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">CALENDARIO DE COMPETICIÓN</p>
+      <h1>♞ Xadrez Galicia</h1>
+      <p class="intro">Torneos, datas e novidades nun só lugar.</p>
+      <div class="hero-meta"><span id="updated">Comprobando actualización…</span><span id="new-count" class="pill" hidden></span></div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="controls" aria-label="Filtros">
+      <label>Buscar torneo<input id="search" type="search" placeholder="Nome, concello, modalidade…"></label>
+      <label>Provincia<select id="province"><option value="">Todas as provincias</option><option>A Coruña</option><option>Lugo</option><option>Ourense</option><option>Pontevedra</option><option>Sen determinar</option></select></label>
+      <label>Mes<select id="month"><option value="">Todos os meses</option></select></label>
+      <label>Modalidade<select id="format"><option value="">Todas as modalidades</option><option>Clásico</option><option>Rápido</option><option>Blitz</option><option>Promoción/escolar</option><option>Sen determinar</option></select></label>
+      <label class="check"><input id="only-new" type="checkbox"> Só novidades</label>
+    </section>
+    <div class="results-line"><strong id="result-count">0 torneos</strong><button id="reset" class="link-button" type="button">Limpar filtros</button></div>
+    <div id="status" class="status" role="status">Cargando os torneos…</div>
+    <section id="tournaments" class="cards" aria-live="polite"></section>
+    <section class="sources">
+      <h2>Fontes consultadas</h2>
+      <p>As fichas enlazan á publicación de orixe. Confirma sempre as bases oficiais antes de inscribirte.</p>
+      <div class="source-links">
+        <a href="https://www.fegaxa.org/gl/competicions/otras-competiciones/temporada-2026/" target="_blank" rel="noopener">FEGAXA ↗</a>
+        <a href="https://www.tabladeflandes.com/gestorneos/galicia.php" target="_blank" rel="noopener">Tabla de Flandes ↗</a>
+        <a href="https://info64.org/" target="_blank" rel="noopener">Info64 ↗</a>
+      </div>
+    </section>
+    <footer>Proxecto comunitario non oficial. Non afiliado a FEGAXA, Info64 nin Tabla de Flandes.</footer>
+  </main>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
